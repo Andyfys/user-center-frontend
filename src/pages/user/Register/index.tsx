@@ -24,10 +24,9 @@ const Register: React.FC = () => {
         return;
       }
       // 注册
-      const {code, data} = await register(values);
-
+      const id = await register(values);
       // @ts-ignore
-      if (code === SUCCESS && data.id > 0) {
+      if (id) {
         const defaultLoginSuccessMessage = '注册成功！';
         message.success(defaultLoginSuccessMessage);
         /** 此方法会跳转到 redirect 参数所在的位置 */

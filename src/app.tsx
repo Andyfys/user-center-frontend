@@ -39,7 +39,6 @@ export async function getInitialState(): Promise<{
   loading?: boolean;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
-
   const fetchUserInfo = async () => {
     try {
       return await queryCurrentUser();
@@ -48,19 +47,24 @@ export async function getInitialState(): Promise<{
     }
     return undefined;
   };
-// 如果是登录页面或注册页面，则执行
+  // 如果是无需登录的页面，不执行
   if (NO_NEED_LOGIN_WHITE_LIST.includes(history.location.pathname)) {
     return {
+      // @ts-ignore
       fetchUserInfo,
-      settings: defaultSettings,};
+      settings: defaultSettings,
+    };
   }
   const currentUser = await fetchUserInfo();
   return {
+    // @ts-ignore
     fetchUserInfo,
     currentUser,
     settings: defaultSettings,
   };
+
 }
+
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => {

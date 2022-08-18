@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import  request  from '@/plugins/GlobalRequestHandler';
+import request from '@/plugins/globalRequestHandler';
 
 /** 获取当前的用户 GET /api/user/current */
 export async function currentUser(options?: { [key: string]: any }) {
